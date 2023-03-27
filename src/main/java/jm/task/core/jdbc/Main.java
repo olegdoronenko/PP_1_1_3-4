@@ -7,7 +7,7 @@ import jm.task.core.jdbc.service.UserService;
 public class Main {
     private final static UserService userService = new UserServiceImpl();
     public static void main(String[] args) {
-        // реализуйте алгоритм здесь
+
         userService.createUsersTable();
         userService.saveUser("Sergey", "Salamatin", (byte) 33);
         userService.saveUser("Peter", "Viborsky", (byte) 82);
