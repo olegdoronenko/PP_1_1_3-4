@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 
 public class Util {
     private static Connection connection = null;
@@ -23,6 +28,20 @@ public class Util {
             e.printStackTrace();
         }
         return connection;
+    }
+
+    public static SessionFactory getSessionFactory() {
+        Configuration configuration = new Configuration();
+        configuration.addAnnotatedClass(User.class);
+        configuration.configure();
+
+        SessionFactory sessionFactory = null;
+        try {
+            sessionFactory = configuration.buildSessionFactory();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+        return sessionFactory;
     }
 
 }

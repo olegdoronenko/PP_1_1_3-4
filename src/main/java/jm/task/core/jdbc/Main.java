@@ -8,14 +8,20 @@ public class Main {
     private final static UserService userService = new UserServiceImpl();
     public static void main(String[] args) {
 
+        userService.dropUsersTable();
+
         userService.createUsersTable();
         userService.saveUser("Sergey", "Salamatin", (byte) 33);
         userService.saveUser("Peter", "Viborsky", (byte) 82);
-        userService.saveUser("Irina", "Shakirova", (byte) 28);
-        userService.saveUser("Marianna", "Vetrova", (byte) 56);
-        userService.getAllUsers();
-        userService.cleanUsersTable();
         userService.dropUsersTable();
+        userService.createUsersTable();
+
+        userService.saveUser("Irina", "Shakirova", (byte) 28);
+        //userService.removeUserById(1);
+        userService.getAllUsers();
+        //userService.cleanUsersTable();
+        //userService.dropUsersTable();
+
 
     }
 }
