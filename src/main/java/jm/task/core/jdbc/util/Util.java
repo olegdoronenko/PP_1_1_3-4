@@ -18,7 +18,7 @@ import java.util.Properties;
 
 
 public class Util {
-    //for JDBC
+    //properties for JDBC
     private static Connection connection = null;
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/PP_1_1_3-4";
@@ -38,7 +38,7 @@ public class Util {
         return connection;
     }
 
-    //Method for Hibernate
+    //Method for Hibernate with properties
     private static SessionFactory sessionFactory;
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
