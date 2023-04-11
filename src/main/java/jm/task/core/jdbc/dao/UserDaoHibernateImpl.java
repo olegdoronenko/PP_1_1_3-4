@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
     private final SessionFactory sessionFactory = Util.getSessionFactory();
-    Transaction tx;
+    private Transaction tx;
 
     public UserDaoHibernateImpl() {
 
@@ -29,9 +29,7 @@ public class UserDaoHibernateImpl implements UserDao {
                     "primary key (id))").addEntity(User.class).executeUpdate();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
+
         }
     }
 
@@ -74,6 +72,9 @@ public class UserDaoHibernateImpl implements UserDao {
 
         } catch (HibernateException e) {
             e.printStackTrace();
+            if (tx != null) {
+                tx.rollback();
+            }
 
         }
     }
@@ -89,6 +90,9 @@ public class UserDaoHibernateImpl implements UserDao {
             //tx.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
+            if (tx != null) {
+                tx.rollback();
+            }
         }
 
         return users;
