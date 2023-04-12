@@ -21,14 +21,15 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-        try {
-            Session session = sessionFactory.openSession();
+        try
+            (Session session = sessionFactory.openSession()){
             tx = session.beginTransaction();
             session.createNativeQuery("CREATE TABLE IF NOT EXISTS Users_Table" +
                     "(id bigint not null auto_increment, age tinyint, last_name varchar(255), name varchar(255), " +
                     "primary key (id))").addEntity(User.class).executeUpdate();
             tx.commit();
-        } catch (Exception e) {
+        } catch (HibernateException e) {
+            e.printStackTrace();
 
         }
     }
